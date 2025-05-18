@@ -7,7 +7,11 @@ This project demonstrates a comprehensive data warehousing and analytics solutio
 ## 🏗️ Data Architecture
 
 The data architecture for this project follows Medallion Architecture **Bronze**, **Silver**, and **Gold** layers:
-![Data Architecture]
+
+## [Data Architecture]
+![Screenshot 2025-05-18 113359](https://github.com/user-attachments/assets/fb081bdb-c666-4eab-a2f4-3e7f3b0fd7cd)
+
+
 
 
 1. **Bronze Layer**: Stores raw data as-is from the source systems. Data is ingested from CSV Files into SQL Server Database.
@@ -104,12 +108,9 @@ data-warehouse-project/
 ---
 
 
-## 🛡️ License
-
-This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and share this project with proper attribution.
-
 ## 🌟 About Me
-
+-**Name-Vaibhav Anand
+-**email_id-anandvaibhav02@gmail.com
 
 Let's stay in touch! Feel free to connect with me on the following platforms:
 
