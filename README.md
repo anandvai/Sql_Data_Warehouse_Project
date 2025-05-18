@@ -19,6 +19,7 @@ The data architecture for this project follows Medallion Architecture **Bronze**
 3. **Gold Layer**: Houses business-ready data modeled into a star schema required for reporting and analytics.
 
 ---
+
 ## 📖 Project Overview
 
 This project involves:
@@ -106,6 +107,75 @@ data-warehouse-project/
 └── requirements.txt                    # Dependencies and requirements for the project
 ```
 ---
+
+# 📊 Data Catalog – Gold Layer
+
+The **Gold Layer** represents the business-level, analytics-ready data in our architecture. It consists of **dimension tables** and **fact tables**, structured to support dashboards, KPIs, and advanced analytical use cases.
+
+---
+
+## 🧑‍🤝‍🧑 `gold.dim_customers`
+
+**Purpose:**  
+Stores customer details enriched with demographic and geographic data.
+
+| Column Name      | Data Type     | Description                                                                 |
+|------------------|---------------|-----------------------------------------------------------------------------|
+| `customer_key`   | INT           | Surrogate key uniquely identifying each customer.                           |
+| `customer_id`    | INT           | Unique identifier assigned to each customer.                                |
+| `customer_number`| NVARCHAR(50)  | Alphanumeric identifier for external tracking.                              |
+| `first_name`     | NVARCHAR(50)  | Customer's first name.                                                      |
+| `last_name`      | NVARCHAR(50)  | Customer's last name.                                                       |
+| `country`        | NVARCHAR(50)  | Country of residence (e.g., 'Australia').                                   |
+| `marital_status` | NVARCHAR(50)  | Marital status (e.g., 'Married', 'Single').                                 |
+| `gender`         | NVARCHAR(50)  | Gender (e.g., 'Male', 'Female', 'n/a').                                     |
+| `birthdate`      | DATE          | Date of birth (format: YYYY-MM-DD).                                         |
+| `create_date`    | DATE          | Timestamp of customer record creation.                                      |
+
+---
+
+## 📦 `gold.dim_products`
+
+**Purpose:**  
+Contains product information and attributes for categorization and analysis.
+
+| Column Name           | Data Type     | Description                                                                 |
+|------------------------|----------------|-----------------------------------------------------------------------------|
+| `product_key`          | INT            | Surrogate key for each product record.                                      |
+| `product_id`           | INT            | Unique internal product identifier.                                         |
+| `product_number`       | NVARCHAR(50)   | Alphanumeric product code.                                                  |
+| `product_name`         | NVARCHAR(50)   | Product name with key attributes (type, color, size).                       |
+| `category_id`          | NVARCHAR(50)   | Identifier for product category.                                            |
+| `category`             | NVARCHAR(50)   | Broad classification (e.g., 'Bikes', 'Components').                        |
+| `subcategory`          | NVARCHAR(50)   | Detailed classification within the category.                                |
+| `maintenance_required` | NVARCHAR(50)   | Indicates if maintenance is required ('Yes', 'No').                         |
+| `cost`                 | INT            | Base product cost in whole currency units.                                  |
+| `product_line`         | NVARCHAR(50)   | Product series (e.g., 'Road', 'Mountain').                                  |
+| `start_date`           | DATE           | Launch date of the product.                                                 |
+
+---
+
+## 💰 `gold.fact_sales`
+
+**Purpose:**  
+Stores transactional sales data linked to products and customers.
+
+| Column Name     | Data Type     | Description                                                                 |
+|------------------|----------------|-----------------------------------------------------------------------------|
+| `order_number`   | NVARCHAR(50)   | Unique order identifier (e.g., 'SO54496').                                  |
+| `product_key`    | INT            | Foreign key linking to `dim_products`.                                      |
+| `customer_key`   | INT            | Foreign key linking to `dim_customers`.                                     |
+| `order_date`     | DATE           | Date the order was placed.                                                  |
+| `shipping_date`  | DATE           | Date the order was shipped.                                                 |
+| `due_date`       | DATE           | Date payment was due.                                                       |
+| `sales_amount`   | INT            | Total value of the sale (in whole units).                                   |
+| `quantity`       | INT            | Number of product units ordered.                                            |
+| `price`          | INT            | Price per product unit.                                                     |
+
+---
+
+✅ **Note:** All foreign keys (`product_key`, `customer_key`) refer to corresponding dimension tables to support a star schema structure.
+
 
 
 ## 🌟 About Me
