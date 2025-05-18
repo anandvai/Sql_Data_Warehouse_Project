@@ -109,8 +109,8 @@ data-warehouse-project/
 
 
 ## 🌟 About Me
--**Name-Vaibhav Anand
--**email_id-anandvaibhav02@gmail.com
+-**Name-Vaibhav Anand**
+-**email_id-anandvaibhav02@gmail.com**
 
 Let's stay in touch! Feel free to connect with me on the following platforms:
 
